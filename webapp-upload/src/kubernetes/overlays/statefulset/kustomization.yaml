@@ -3,6 +3,6 @@ kind: Kustomization
 
 resources:
   - ../../base
-  - service.yaml
+  - statefulset.yaml
 
-namespace: ntnx-hostpath
+namespace: ntnx-statefulset

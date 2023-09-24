@@ -1,22 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: webapp-upload
   labels:
     app: webapp-upload
     tier: dev
 spec:
-  replicas: 1
+  serviceName: webapp-upload
   selector:
     matchLabels:
       app: webapp-upload
       tier: dev
   template:
-    metadata:
-      name: webapp-upload
-      labels:
-        app: webapp-upload
-        tier: dev
     spec:
       containers:
         - name: webapp-upload
@@ -31,5 +26,17 @@ spec:
               cpu: 1000m
           ports:
             - containerPort: 8080
+          volumeMounts:
+            - name: data-uploader
+              mountPath: /var/data/upload
       restartPolicy: Always
-
+  volumeClaimTemplates:
+    - spec:
+        volumeName: data-uploader
+        volumeMode: Filesystem
+        storageClassName: ntnx-stateful-files-sc
+        accessModes:
+          - ReadWriteMany
+        resources:
+          requests:
+            storage: 20Gi
