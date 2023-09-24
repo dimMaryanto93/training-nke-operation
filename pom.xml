@@ -16,6 +16,7 @@
 
 	<modules>
 		<module>webapp-networking</module>
+		<module>webapp-upload</module>
 	</modules>
 
 	<properties>

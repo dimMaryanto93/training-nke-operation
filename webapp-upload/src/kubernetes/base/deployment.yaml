@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-upload
+  labels:
+    app: webapp-upload
+    tier: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-upload
+      tier: dev
+  template:
+    metadata:
+      name: webapp-upload
+      labels:
+        app: webapp-upload
+        tier: dev
+    spec:
+      containers:
+        - name: webapp-upload
+          image: dimmaryanto93/training-nke-webapp-upload:v1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: 200Mi
+              cpu: 100m
+            limits:
+              memory: 500Mi
+              cpu: 1000m
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+
