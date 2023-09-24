@@ -34,7 +34,7 @@ spec:
     - spec:
         volumeName: data-uploader
         volumeMode: Filesystem
-        storageClassName: ntnx-stateful-files-sc
+        storageClassName: ntnx-files-sc
         accessModes:
           - ReadWriteMany
         resources:
