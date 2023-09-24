@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  apps:
+    image: dimmaryanto93/training-nke-webapp-net:v1
+    build:
+      dockerfile: Dockerfile
+      context: ./
+      args:
+        - JAR_FILE=nke-webapp-network.jar
+    ports:
+      - "8080:8080"
